@@ -1,77 +1,25 @@
-import axios from "axios";
-import { getPackingSuggestions } from "../services/huggingFaceClient";
+import { promptLuggage } from "../services/promptLuggage";
 import { PackingPromptInput } from "../utils/buildPrompt";
+import { checkLimit } from "../services/checkLimit";
+import { successPropmtResponse, errorPropmtResponse } from "../utils/responses";
 
 export const resolvers = {
   Query: {
-    // promptLuggage: async (_: any, { message }: { message: string }) => {
-    //   try {
-    //     if (!message) throw new Error("Mensaje vacío");
-    //     return {
-    //       success: true,
-    //       message: "Prompt 1 procesado con éxito",
-    //       data: `Respuesta IA 1: ${message}`,
-    //     };
-    //   } catch (error: any) {
-    //     return {
-    //       success: false,
-    //       message: error.message,
-    //       data: null,
-    //     };
-    //   }
-    // },
-    // promptTranslation: async (
-    //   _: any,
-    //   args: { text: string; targetLanguage: string }
-    // ) => {
-    //   try {
-    //     const response = await axios.post(
-    //       "https://libretranslate.de/translate",
-    //       {
-    //         q: args.text,
-    //         source: "auto",
-    //         target: args.targetLanguage,
-    //         format: "text",
-    //       },
-    //       {
-    //         headers: { "Content-Type": "application/json" },
-    //       }
-    //     );
-
-    //     return {
-    //       success: true,
-    //       message: "Traducción exitosa",
-    //       data: response.data.translatedText,
-    //     };
-    //   } catch (error: any) {
-    //     return {
-    //       success: false,
-    //       message: `Error al traducir ${error}`,
-    //       data: null,
-    //     };
-    //   }
-    // },
-    suggestPacking: async (
+    promptLuggage: async (
       _: any,
       { prompt }: { prompt: PackingPromptInput }
     ) => {
       try {
         if (!prompt) throw new Error("Prompt is required");
 
-        const response = await getPackingSuggestions(prompt);
-        console.log("RESPONSE AI", response);
+        const hasLimit = await checkLimit();
 
-        return {
-          success: true,
-          message: "Packing suggestions retrieved successfully",
-          data: JSON.stringify(response),
-        };
+        if (!hasLimit.success) return hasLimit.message;
+
+        const response = await promptLuggage(prompt);
+        return successPropmtResponse(response);
       } catch (error: any) {
-        return {
-          success: false,
-          message: `Failed to fetch suggestions: ${error.message}`,
-          data: null,
-        };
+        return errorPropmtResponse(error.message);
       }
     },
   },

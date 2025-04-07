@@ -15,7 +15,7 @@ export const typeDefs = gql`
     weatherSensitivity: String!
     favoriteClothing: [String]
     accommodationType: String!
-    hasWasherDryer: Boolean
+    utilities: String!
     gender: String!
     height: Int!
     nationality: String!
@@ -24,8 +24,6 @@ export const typeDefs = gql`
   }
 
   type Query {
-    promptLuggage(message: String!): PromptResponse
-    promptTranslation(text: String!, targetLanguage: String!): PromptResponse
-    suggestPacking(prompt: PackingPromptInput!): PromptResponse
+    promptLuggage(prompt: PackingPromptInput!): PromptResponse
   }
 `;

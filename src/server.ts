@@ -1,14 +1,15 @@
 import dotenv from "dotenv";
 dotenv.config();
+
 import express from "express";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
-// import { json } from "body-parser";
+
 import { typeDefs } from "./graphql/schema";
 import { resolvers } from "./graphql/resolvers";
 
-console.log("🔑 HF_API_KEY:", process.env.HF_API_KEY);
+console.log("🔑 OR_API_KEY:", process.env.OR_API_KEY);
 const app = express();
 const PORT = process.env.PORT;
 app.use(cors());

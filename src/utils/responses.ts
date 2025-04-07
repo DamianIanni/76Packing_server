@@ -1,9 +1,11 @@
-export const successResponse = (data: any) => ({
+export const successPropmtResponse = (data: any) => ({
   success: true,
-  data,
+  message: "Packing suggestions retrieved successfully",
+  data: JSON.stringify(data),
 });
 
-export const errorResponse = (message: string) => ({
+export const errorPropmtResponse = (message: string) => ({
   success: false,
-  error: message,
+  message: `Failed to fetch suggestions: ${message}`,
+  data: null,
 });
