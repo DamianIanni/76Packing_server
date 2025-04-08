@@ -1,7 +1,8 @@
 export const successPropmtResponse = (data: any) => ({
   success: true,
   message: "Packing suggestions retrieved successfully",
-  data: JSON.stringify(data),
+  // data: JSON.stringify(data),
+  data: data,
 });
 
 export const errorPropmtResponse = (message: string) => ({

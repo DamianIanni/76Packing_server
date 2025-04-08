@@ -15,7 +15,7 @@ export interface PackingPromptInput {
 }
 
 export function buildPackingPrompt(input: PackingPromptInput): string {
-  return `You are an expert travel assistant. Based on and USE ONLY the following travel information, provide a detailed list of clothing to pack inside the provided luggage. Avoid all explanations, just list the items and include quantities.
+  return `You are an expert travel assistant. Based only on the following travel information, generate a realistic and efficient packing list. Return only the items with quantities in a structured JSON format. Avoid any explanation. Do not return an empty list.
 
 Destination: ${input.destination}
 Trip duration (in days): ${input.duration}
@@ -27,35 +27,30 @@ Luggage details: ${
           .join("; ")
       : "1 standard suitcase (details unspecified)"
   }
-Weather sensitivity (e.g., sensitive to cold, heat, humidity) (optional): ${
-    input.weatherSensitivity || "None"
-  }
-Favorite clothing items (optional): ${input.favoriteClothing || "None"}
+Weather sensitivity: ${input.weatherSensitivity || "None"}
+Favorite clothing items: ${input.favoriteClothing || "None"}
 Accommodation type: ${input.accommodationType}
-Available utilities (e.g., washing machine, dryer) (optional): ${
-    input.utilities || "None"
-  }
+Available utilities: ${input.utilities || "None"}
 Gender: ${input.gender}
 Height: ${input.height}
 Nationality: ${input.nationality}
 Age: ${input.age}
-Dress style (optional): ${input.dressStyle || "None"}
+Dress style: ${input.dressStyle || "None"}
 
-Please return a separate, flat list of items (with quantities) to pack for each luggage. Avoid categorizing. Use the following format:
+Important rules:
+- Only include clothing, underwear, and footwear. Do not include electronics, documents, or accessories like phones, passports, wallets, sunglasses, headphones, or similar items.
+- Ensure that each clothing item is only included once across all luggages unless multiple quantities are justified.
+- Add 3 more of each piece of underware and socks that you put in the luggage.
+- Always include essential clothing and undergarments.
+- Consider the capacity of each luggage when deciding quantities.
+- Do not return empty arrays or omit key clothing items.
+- Avoid item names with parentheses or descriptive notes.
+- Avoid repeated or unnecessary items.
+- Do not include accessories or toiletries.
+- Use short and simple item names like “t-shirt”, “jeans”, or “hiking shoes”.
+- Only include colors for favorite items if provided.
 
---- Luggage 1 ---
-- 5 x white t-shirts
-- 2 x dress shirts
-- 3 x jeans
-- 2 x shorts
-- 7 x underwear
-- 7 x socks
-- 1 x jacket
-- 1 x sneakers
-- 1 x sandals
-- 1 x travel adapter
-
---- Luggage 2 ---
-(if applicable, continue in same format)
+Response format:
+A JSON array of arrays (one per luggage). Each item is: { "quantity": number, "item": string }
 `;
 }

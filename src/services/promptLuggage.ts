@@ -1,6 +1,6 @@
 import axios from "axios";
 import { buildPackingPrompt, PackingPromptInput } from "../utils/buildPrompt";
-import { responseBuilder } from "../utils/buildResponse";
+// import { responseBuilder } from "../utils/buildResponse";
 
 const MODEL_URL = "https://openrouter.ai/api/v1/chat/completions";
 const AI_MODEL = "mistralai/mistral-7b-instruct:free";
@@ -27,8 +27,10 @@ export async function promptLuggage(data: PackingPromptInput) {
     }
   );
 
-  const output = responseBuilder(response.data.choices?.[0]?.message?.content);
-  if (!output) throw new Error("Respuesta vacía de la IA");
+  const messageContent = response.data.choices?.[0]?.message?.content;
+  console.log("AI RAW MESSAGE:", messageContent);
+  // const output = responseBuilder(messageContent);
+  if (!messageContent) throw new Error("Respuesta vacía de la IA");
 
-  return output;
+  return messageContent;
 }
