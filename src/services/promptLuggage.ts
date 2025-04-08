@@ -28,7 +28,7 @@ export async function promptLuggage(data: PackingPromptInput) {
   );
 
   const messageContent = response.data.choices?.[0]?.message?.content;
-  console.log("AI RAW MESSAGE:", messageContent);
+  // console.log("AI RAW MESSAGE:", messageContent);
   // const output = responseBuilder(messageContent);
   if (!messageContent) throw new Error("Respuesta vacía de la IA");
 

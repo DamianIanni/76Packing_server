@@ -9,7 +9,7 @@ import cors from "cors";
 import { typeDefs } from "./graphql/schema";
 import { resolvers } from "./graphql/resolvers";
 
-console.log("🔑 OR_API_KEY:", process.env.OR_API_KEY);
+// console.log("🔑 OR_API_KEY:", process.env.OR_API_KEY);
 const app = express();
 const PORT = process.env.PORT;
 app.use(cors());
