@@ -28,9 +28,19 @@ export async function promptLuggage(data: PackingPromptInput) {
   );
 
   const messageContent = response.data.choices?.[0]?.message?.content;
-  // console.log("AI RAW MESSAGE:", messageContent);
+  const a = JSON.parse(messageContent);
+  console.log("PARSEaDO", a);
+
+  // console.log("AI RAW MESSAGE:", response.data.error);
   // const output = responseBuilder(messageContent);
-  if (!messageContent) throw new Error("Respuesta vacía de la IA");
+  if (!messageContent) {
+    const error = {
+      message: response.data?.error?.message || "Error desconocido",
+      code: response.data?.error?.code || 500,
+      data: response.data?.error.metadata || {},
+    };
+    throw error;
+  }
 
   return messageContent;
 }

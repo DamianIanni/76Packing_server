@@ -49,8 +49,9 @@ Important rules:
 - Do not include accessories or toiletries.
 - Use short and simple item names like “t-shirt”, “jeans”, or “hiking shoes”.
 - Only include colors for favorite items if provided.
+- Only return the requested JSON 
 
 Response format:
-A JSON array of arrays (one per luggage). Each item is: { "quantity": number, "item": string }
+A JSON array of objects, where each object represents one luggage. Each object must have two keys: "luggage" (a string with the luggage name) and "content" (an array of items). Each item is an object with this format: { "quantity": number, "item": string }
 `;
 }

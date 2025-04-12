@@ -19,7 +19,7 @@ export const resolvers = {
         const response = await promptLuggage(prompt);
         return successPropmtResponse(response);
       } catch (error: any) {
-        return errorPropmtResponse(error.message);
+        return errorPropmtResponse(error);
       }
     },
   },

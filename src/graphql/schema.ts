@@ -4,6 +4,7 @@ export const typeDefs = gql`
   type PromptResponse {
     success: Boolean!
     message: String
+    code: String
     data: String
   }
 
