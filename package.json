@@ -29,7 +29,8 @@
     "express": "^4.21.2",
     "firebase-admin": "^13.2.0",
     "graphql": "^16.10.0",
-    "graphql-tag": "^2.12.6"
+    "graphql-tag": "^2.12.6",
+    "mysql2": "^3.14.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
