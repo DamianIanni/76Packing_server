@@ -1,5 +1,8 @@
 import axios from "axios";
-import { buildPackingPrompt, PackingPromptInput } from "../utils/buildPrompt";
+import {
+  buildPackingPrompt,
+  PackingPromptInput,
+} from "../../utils/buildPrompt";
 // import { responseBuilder } from "../utils/buildResponse";
 
 const MODEL_URL = "https://openrouter.ai/api/v1/chat/completions";

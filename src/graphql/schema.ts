@@ -27,7 +27,7 @@ export const typeDefs = gql`
     Email: String!
     Name: String!
     Surname: String!
-    userId: String!
+    userId: String
   }
 
   input PackingPromptInput {

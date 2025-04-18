@@ -1,13 +1,15 @@
 import { dbPool } from "../../../config/db";
 import { userInterface } from "../../../utils/dbUtils/dataInterfaces";
 import { ResultSetHeader } from "mysql2";
+import { v4 as uuidv4 } from "uuid";
 
 export const insertUser = async (
   data: userInterface
 ): Promise<ResultSetHeader> => {
   const sql = `INSERT INTO Users (Email, Name, Surname, userId) VALUES (?, ?, ?, ?)`;
+  const uuid = uuidv4();
 
-  const VALUES = [data.Email, data.Name, data.Surname, data.userId];
+  const VALUES = [data.Email, data.Name, data.Surname, uuid];
 
   const connection = await dbPool.getConnection();
 

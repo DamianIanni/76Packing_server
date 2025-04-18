@@ -1,6 +1,6 @@
-import { promptLuggage } from "../../services/promptLuggage";
+import { promptLuggage } from "../../services/promptServices/promptLuggage";
 import { PackingPromptInput } from "../../utils/buildPrompt";
-import { checkLimit } from "../../services/checkLimit";
+import { checkLimit } from "../../services/promptServices/checkLimit";
 import { successResponse, errorResponse } from "../../utils/responses";
 
 export const promptLuggage_resolver = {
