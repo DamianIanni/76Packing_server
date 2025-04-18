@@ -1,13 +1,13 @@
 import { dbPool } from "../../../config/db";
 import { favPackingInterface } from "../../../utils/dbUtils/dataInterfaces";
+import { ResultSetHeader } from "mysql2";
 
 export const insertFavPacking = async (
   data: favPackingInterface
-): Promise<void> => {
-  const sql = `INSERT INTO FavPacking (id, Name, Luggage_1, Luggage_2, Luggage_3, Luggage_4, userId, packing_type) VALUES (?, ?, ?, ?, ?, ?)`;
+): Promise<ResultSetHeader> => {
+  const sql = `INSERT INTO FavPacking (Name, Luggage_1, Luggage_2, Luggage_3, Luggage_4, userId, packing_type) VALUES (?, ?, ?, ?, ?, ?, ?)`;
 
   const VALUES = [
-    data.id,
     data.Name,
     data.Luggage_1,
     data.Luggage_2,
@@ -18,14 +18,9 @@ export const insertFavPacking = async (
   ];
 
   const connection = await dbPool.getConnection();
+  const [res] = await connection.execute<ResultSetHeader>(sql, VALUES);
+  connection.release();
+  if (!res) throw "errorcito";
 
-  try {
-    connection.execute(sql, VALUES);
-  } catch (error: any) {
-    console.log("ERROR INSERTING FAV PACKING INTO DB:", error);
-
-    throw error;
-  } finally {
-    connection.release();
-  }
+  return res;
 };

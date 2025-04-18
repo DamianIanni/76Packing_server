@@ -1,19 +1,14 @@
 import { dbPool } from "../../../config/db";
+import { ResultSetHeader } from "mysql2";
 
-export const deleteUser = async (userId: string): Promise<void> => {
+export const deleteUser = async (userId: string): Promise<ResultSetHeader> => {
   const sql = `DELETE FROM Users WHERE userId = ?`;
 
   const VALUES = [userId];
 
   const connection = await dbPool.getConnection();
-
-  try {
-    connection.execute(sql, VALUES);
-  } catch (error: any) {
-    console.log("ERROR DELETING USER FROM DB:", error);
-
-    throw error;
-  } finally {
-    connection.release();
-  }
+  const [res] = await connection.execute<ResultSetHeader>(sql, VALUES);
+  connection.release();
+  if (!res) throw "Error deleting user from DB";
+  return res;
 };

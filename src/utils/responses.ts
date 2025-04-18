@@ -1,12 +1,12 @@
-export const successPropmtResponse = (data: any) => ({
+export const successResponse = (data: any) => ({
   success: true,
-  message: "Packing suggestions retrieved successfully",
+  message: `Success`,
   code: 200,
   // data: JSON.parse(data),
-  data: data,
+  data: JSON.stringify(data),
 });
 
-export const errorPropmtResponse = (error: any) => {
+export const errorResponse = (error: any) => {
   console.log("ERRORE", error);
   // const parsedError = JSON.parse(error);
   // const parsedMetadata = JSON.parse(parsedError.metadata.raw);
@@ -14,7 +14,7 @@ export const errorPropmtResponse = (error: any) => {
 
   return {
     success: false,
-    message: `Failed to fetch suggestions: ${error.message}`,
+    message: `FAILED: ${error.message}`,
     code: error.code,
     data: null,
   };
