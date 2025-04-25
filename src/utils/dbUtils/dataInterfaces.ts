@@ -9,6 +9,16 @@ export interface userInterface {
   Name: string;
   Surname: string;
   Email: string;
+  Height?: number;
+  Gender?: string;
+  DateOfBirth?: string;
+}
+
+export interface userStyleInterface {
+  id?: number;
+  userId: string;
+  brands: string;
+  style: string;
 }
 
 export interface favClothesInterface {

@@ -13,6 +13,12 @@ export const typeDefs = gql`
     Item: String
   }
 
+  input UserStyle {
+    userId: String!
+    brands: String
+    style: String
+  }
+
   input favPacking {
     Name: String!
     Luggage_1: String!
@@ -51,6 +57,7 @@ export const typeDefs = gql`
     getUser(userId: String!): Response
     getFavClothes(userId: String!): Response
     getFavPacking(userId: String!): Response
+    getUserStyle(userId: String!): Response
   }
 
   type Mutation {
@@ -61,5 +68,7 @@ export const typeDefs = gql`
     updateFavClothes(favClothes: FavClothes!): Response
     insertFavPacking(favPacking: favPacking!): Response
     updateFavPacking(favPacking: favPacking!): Response
+    insertUserStyle(userStyle: UserStyle!): Response
+    updateUserStyle(userStyle: UserStyle!): Response
   }
 `;

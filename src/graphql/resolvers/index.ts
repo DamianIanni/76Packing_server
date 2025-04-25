@@ -1,6 +1,10 @@
 import { promptLuggage_resolver } from "./promptLuggage.resolvers";
 import { userMutationsResolvers, userQueriesResolvers } from "./user.resolvers";
 import {
+  userStyleMutationsResolvers,
+  userStyleQueriesResolvers,
+} from "./userStyle.resolvers";
+import {
   favClothesMutationsResolvers,
   favClothesQueriesResolvers,
 } from "./favClothes.resolvers";
@@ -15,10 +19,12 @@ export const resolvers = {
     ...userQueriesResolvers,
     ...favClothesQueriesResolvers,
     ...favPackingQueriesResolvers,
+    ...userStyleQueriesResolvers,
   },
   Mutation: {
     ...userMutationsResolvers,
     ...favClothesMutationsResolvers,
     ...favPackingMutationsResolver,
+    ...userStyleMutationsResolvers,
   },
 };
