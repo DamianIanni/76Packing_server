@@ -1,10 +1,14 @@
-export const successResponse = (data: any) => ({
-  success: true,
-  message: `Success`,
-  code: 200,
-  // data: JSON.parse(data),
-  data: JSON.stringify(data),
-});
+export const successResponse = (data: any) => {
+  console.log("RESPONSE RESPONSE", data);
+
+  return {
+    success: true,
+    message: `Success`,
+    code: 200,
+    // data: JSON.parse(data),
+    data: data,
+  };
+};
 
 export const errorResponse = (error: any) => {
   console.log("ERRORE", error);

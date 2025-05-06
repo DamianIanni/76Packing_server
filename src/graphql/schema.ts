@@ -1,11 +1,12 @@
 import { gql } from "graphql-tag";
 
 export const typeDefs = gql`
+  scalar JSON
   type Response {
     success: Boolean!
     message: String
     code: String
-    data: String
+    data: JSON
   }
 
   input FavClothes {
@@ -33,23 +34,39 @@ export const typeDefs = gql`
     Email: String!
     Name: String!
     Surname: String!
+    DateOfBirth: String
+    Gender: String
     userId: String
   }
 
   input PackingPromptInput {
     destination: String!
     duration: Int!
-    activities: [String!]!
+    activities: [String]
     luggageItems: [String!]!
-    weatherSensitivity: String!
+    weatherSensitivity: String
     favoriteClothing: [String]
-    accommodationType: String!
-    utilities: String!
-    gender: String!
-    height: Int!
+    accommodationType: String
+    utilities: String
+    gender: String
+    height: Int
     nationality: String!
     age: Int!
-    dressStyle: String!
+    dressStyle: String
+  }
+
+  input SavedLuggage {
+    luggage1: String
+    luggage2: String
+    luggage3: String
+    luggage4: String
+    userId: String!
+  }
+
+  input updateFavPackingData {
+    userId: String!
+    packing_type: Int!
+    id: Int!
   }
 
   type Query {
@@ -58,6 +75,7 @@ export const typeDefs = gql`
     getFavClothes(userId: String!): Response
     getFavPacking(userId: String!): Response
     getUserStyle(userId: String!): Response
+    getSavedLuggage(userId: String!): Response
   }
 
   type Mutation {
@@ -67,8 +85,10 @@ export const typeDefs = gql`
     insertFavClothes(favClothes: FavClothes!): Response
     updateFavClothes(favClothes: FavClothes!): Response
     insertFavPacking(favPacking: favPacking!): Response
-    updateFavPacking(favPacking: favPacking!): Response
+    updateFavPacking(favPacking: updateFavPackingData!): Response
     insertUserStyle(userStyle: UserStyle!): Response
     updateUserStyle(userStyle: UserStyle!): Response
+    insertSavedLuggage(savedLuggage: SavedLuggage!): Response
+    updateSavedLuggage(savedLuggage: SavedLuggage!): Response
   }
 `;

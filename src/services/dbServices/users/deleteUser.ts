@@ -9,6 +9,6 @@ export const deleteUser = async (userId: string): Promise<ResultSetHeader> => {
   const connection = await dbPool.getConnection();
   const [res] = await connection.execute<ResultSetHeader>(sql, VALUES);
   connection.release();
-  if (!res) throw "Error deleting user from DB";
+  if (res.affectedRows === 0) throw "Error deleting user from DB";
   return res;
 };

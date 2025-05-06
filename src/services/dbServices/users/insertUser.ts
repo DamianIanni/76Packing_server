@@ -17,7 +17,7 @@ export const insertUser = async (
   console.log("INSERTED USER INTO DB", res);
 
   connection.release();
-  if (!res) {
+  if (res.affectedRows === 0) {
     console.log("ERROR INSERTING USER INTO DB:");
     throw "ERRORSITO";
   }

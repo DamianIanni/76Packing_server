@@ -12,6 +12,11 @@ import {
   favPackingMutationsResolver,
   favPackingQueriesResolvers,
 } from "./favPacking.resolvers";
+import {
+  savedLuggageMutationsResolvers,
+  savedLuggageQueriesResolvers,
+} from "./savedLuggage.resolvers";
+import GraphQLJSON from "graphql-type-json";
 
 export const resolvers = {
   Query: {
@@ -20,11 +25,14 @@ export const resolvers = {
     ...favClothesQueriesResolvers,
     ...favPackingQueriesResolvers,
     ...userStyleQueriesResolvers,
+    ...savedLuggageQueriesResolvers,
   },
   Mutation: {
     ...userMutationsResolvers,
     ...favClothesMutationsResolvers,
     ...favPackingMutationsResolver,
     ...userStyleMutationsResolvers,
+    ...savedLuggageMutationsResolvers,
   },
+  JSON: GraphQLJSON,
 };

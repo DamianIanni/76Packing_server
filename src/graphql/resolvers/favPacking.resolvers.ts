@@ -33,6 +33,8 @@ export const favPackingQueriesResolvers = {
   getFavPacking: async (_: any, { userId }: { userId: string }) => {
     try {
       const res = await getFavPacking(userId);
+      // console.log("FAVING PACKING", res);
+
       return successResponse(res);
     } catch (error) {
       return errorResponse(error);

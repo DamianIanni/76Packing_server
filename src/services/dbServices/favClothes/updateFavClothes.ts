@@ -18,7 +18,7 @@ export const updateFavClothes = async (
   );
   connection.release();
 
-  if (!res) {
+  if (res.affectedRows === 0) {
     throw `ERROR - Failed to ${
       data.Item === "" ? "delete" : "update"
     } favorite clothes`;

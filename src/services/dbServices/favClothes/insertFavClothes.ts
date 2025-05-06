@@ -12,7 +12,7 @@ export const insertFavClothes = async (
   const connection = await dbPool.getConnection();
   const [res] = await connection.execute<ResultSetHeader>(sql, VALUES);
   connection.release();
-  if (!res) {
+  if (res.affectedRows === 0) {
     throw "error";
   }
   return res;

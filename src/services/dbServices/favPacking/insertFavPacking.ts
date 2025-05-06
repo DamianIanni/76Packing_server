@@ -20,7 +20,7 @@ export const insertFavPacking = async (
   const connection = await dbPool.getConnection();
   const [res] = await connection.execute<ResultSetHeader>(sql, VALUES);
   connection.release();
-  if (!res) throw "errorcito";
+  if (res.affectedRows === 0) throw "errorcito";
 
   return res;
 };

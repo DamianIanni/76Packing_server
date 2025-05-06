@@ -4,14 +4,23 @@ type PackingType = 0 | 1 | 2 | 3;
 // 1 is fav
 // 2 is both
 // 3 means to be deleted
-export interface userInterface {
+
+export interface savedLuggageInterface {
+  id?: number;
   userId: string;
+  luggage1?: string;
+  luggage2?: string;
+  luggage3?: string;
+  luggage4?: string;
+}
+export interface userInterface {
+  userId?: string;
   Name: string;
   Surname: string;
   Email: string;
   Height?: number;
   Gender?: string;
-  DateOfBirth?: string;
+  DateOfBirth: Date;
 }
 
 export interface userStyleInterface {

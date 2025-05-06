@@ -1,12 +1,12 @@
 import { dbPool } from "../../../config/db";
 import { RowDataPacket } from "mysql2";
-import { userInterface } from "../../../utils/dbUtils/dataInterfaces";
+import { savedLuggageInterface } from "../../../utils/dbUtils/dataInterfaces";
 
-export const getUser = async (
+export const getSavedLuggage = async (
   userId: string
-): Promise<userInterface | undefined> => {
+): Promise<savedLuggageInterface | undefined> => {
   console.log("userId recibido:", userId);
-  const sql = `SELECT * FROM Users WHERE userId = ?`;
+  const sql = `SELECT * FROM SavedLuggage WHERE userId = ?`;
   const VALUES = [userId];
 
   const connection = await dbPool.getConnection();
@@ -14,14 +14,13 @@ export const getUser = async (
   connection.release();
   const row = res[0] as RowDataPacket;
 
-  const user: userInterface = {
+  const savedLuggage: savedLuggageInterface = {
+    id: row.id,
     userId: row.userId,
-    Name: row.Name,
-    Surname: row.Surname,
-    Email: row.Email,
-    Height: row.Height,
-    Gender: row.Gender,
-    DateOfBirth: row.DateOfBirth,
+    luggage1: row.luggage1,
+    luggage2: row.luggage2,
+    luggage3: row.luggage3,
+    luggage4: row.luggage4,
     // Agregá el resto si tenés más campos
   };
 
@@ -29,5 +28,5 @@ export const getUser = async (
     throw "Error getting user";
   }
 
-  return user;
+  return savedLuggage;
 };

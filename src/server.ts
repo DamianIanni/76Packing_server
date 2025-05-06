@@ -18,7 +18,7 @@ import { resolvers } from "./graphql/resolvers";
 const app = express();
 const PORT = process.env.PORT;
 const castedServiceAccount = serviceAccount as ServiceAccount;
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 admin.initializeApp({
@@ -32,7 +32,12 @@ const server = new ApolloServer({
 
 async function startServer() {
   await server.start();
-
+  app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    console.log("Headers:", req.headers);
+    console.log("Body:", req.body);
+    next();
+  });
   // app.use("/graphql", async (req, res, next) => {
   //   const authHeader = req.headers.authorization;
 

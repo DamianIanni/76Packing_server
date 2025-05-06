@@ -1,17 +1,17 @@
 export interface PackingPromptInput {
   destination: string;
   duration: number;
-  activities: string;
+  activities?: string;
   luggageItems: string[];
   weatherSensitivity?: string;
   favoriteClothing?: string;
-  accommodationType: string;
+  accommodationType?: string;
   utilities?: string;
-  gender: string;
-  height: string;
-  nationality: string;
+  gender?: string;
+  height?: string;
+  nationality?: string;
   age: number;
-  dressStyle: string;
+  dressStyle?: string;
 }
 
 export function buildPackingPrompt(input: PackingPromptInput): string {
@@ -19,7 +19,7 @@ export function buildPackingPrompt(input: PackingPromptInput): string {
 
 Destination: ${input.destination}
 Trip duration (in days): ${input.duration}
-Planned activities: ${input.activities}
+Planned activities: ${input.activities || "None"}}
 Luggage details: ${
     input.luggageItems && input.luggageItems.length > 0
       ? input.luggageItems
@@ -29,11 +29,11 @@ Luggage details: ${
   }
 Weather sensitivity: ${input.weatherSensitivity || "None"}
 Favorite clothing items: ${input.favoriteClothing || "None"}
-Accommodation type: ${input.accommodationType}
+Accommodation type: ${input.accommodationType || "None"}}
 Available utilities: ${input.utilities || "None"}
-Gender: ${input.gender}
-Height: ${input.height}
-Nationality: ${input.nationality}
+Gender: ${input.gender || "None"}}
+Height: ${input.height || "None"}}
+Nationality: ${input.nationality || "None"}}
 Age: ${input.age}
 Dress style: ${input.dressStyle || "None"}
 
