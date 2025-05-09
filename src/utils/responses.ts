@@ -1,5 +1,8 @@
+const cleanObject = (obj: any) => JSON.parse(JSON.stringify(obj));
+
 export const successResponse = (data: any) => {
   console.log("RESPONSE RESPONSE", data);
+  // const cleaned = cleanObject(data);
 
   return {
     success: true,
@@ -20,6 +23,6 @@ export const errorResponse = (error: any) => {
     success: false,
     message: `FAILED: ${error.message}`,
     code: error.code,
-    data: null,
+    data: error,
   };
 };

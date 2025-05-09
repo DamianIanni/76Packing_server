@@ -76,6 +76,8 @@ export const typeDefs = gql`
     getFavPacking(userId: String!): Response
     getUserStyle(userId: String!): Response
     getSavedLuggage(userId: String!): Response
+    getUserId(email: String!): Response
+    getAllUserData(userId: String!): Response
   }
 
   type Mutation {

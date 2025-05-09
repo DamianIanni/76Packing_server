@@ -1,16 +1,18 @@
 import { dbPool } from "../../../config/db";
 import { RowDataPacket } from "mysql2";
+import { PoolConnection } from "mysql2/promise";
 import { favPackingInterface } from "../../../utils/dbUtils/dataInterfaces";
 
 export const getFavPacking = async (
-  userId: string
-): Promise<favPackingInterface[]> => {
+  userId: string,
+  conn?: PoolConnection
+): Promise<favPackingInterface[] | null> => {
   const sql = `SELECT * FROM FavPacking WHERE userId = ?`;
   const VALUES = [userId];
 
-  const connection = await dbPool.getConnection();
+  const connection = conn || (await dbPool.getConnection());
   const [res] = await connection.execute<RowDataPacket[]>(sql, VALUES);
-  connection.release();
+  if (!conn) connection.release();
 
   // const row = res as RowDataPacket;
 
@@ -26,8 +28,8 @@ export const getFavPacking = async (
   //   // Agregá el resto si tenés más campos
   // };
 
-  if (!res[0]) throw "Error getting fav packing";
-  console.log("RES RES", res);
+  // if (!res[0]) throw "Error getting fav packing";
+  // console.log("RES RES", res);
 
   return res as favPackingInterface[];
 };

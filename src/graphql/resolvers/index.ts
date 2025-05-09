@@ -16,6 +16,7 @@ import {
   savedLuggageMutationsResolvers,
   savedLuggageQueriesResolvers,
 } from "./savedLuggage.resolvers";
+import { getAllUserDataQueryResolver } from "./allData.resolvers";
 import GraphQLJSON from "graphql-type-json";
 
 export const resolvers = {
@@ -26,6 +27,7 @@ export const resolvers = {
     ...favPackingQueriesResolvers,
     ...userStyleQueriesResolvers,
     ...savedLuggageQueriesResolvers,
+    ...getAllUserDataQueryResolver,
   },
   Mutation: {
     ...userMutationsResolvers,

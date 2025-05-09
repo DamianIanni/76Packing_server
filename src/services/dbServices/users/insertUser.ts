@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export const insertUser = async (
   data: userInterface
-): Promise<ResultSetHeader> => {
+): Promise<{ res: ResultSetHeader; uuid: string }> => {
   const sql = `INSERT INTO Users (Email, Name, Surname, userId) VALUES (?, ?, ?, ?)`;
   const uuid = uuidv4();
 
@@ -21,5 +21,5 @@ export const insertUser = async (
     console.log("ERROR INSERTING USER INTO DB:");
     throw "ERRORSITO";
   }
-  return res;
+  return { res, uuid };
 };
