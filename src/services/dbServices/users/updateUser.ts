@@ -7,6 +7,8 @@ export const updateUser = async (
 ): Promise<ResultSetHeader> => {
   const sql = `UPDATE Users SET Name = ?, Surname = ?, date_of_birth = ?, gender = ? WHERE userId = ?`;
 
+  console.log("DATA EN UPDATE USER", data);
+
   const VALUES = [
     data.Name,
     data.Surname,

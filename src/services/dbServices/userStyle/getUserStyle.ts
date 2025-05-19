@@ -3,7 +3,7 @@ import { RowDataPacket } from "mysql2";
 import { PoolConnection } from "mysql2/promise";
 
 export const getUserStyle = async (userId: string, conn?: PoolConnection) => {
-  const sql = "SELECT * FROM UserStyle WHERE userId = ?";
+  const sql = "SELECT style, brands FROM UserStyle WHERE userId = ?";
   const VALUES = [userId];
 
   const connection = conn || (await dbPool.getConnection());

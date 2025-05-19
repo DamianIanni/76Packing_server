@@ -23,7 +23,7 @@ export const getUser = async (
     Email: row.Email,
     Height: row.Height,
     Gender: row.Gender,
-    DateOfBirth: row.DateOfBirth,
+    DateOfBirth: row.date_of_birth,
     // Agregá el resto si tenés más campos
   };
 
