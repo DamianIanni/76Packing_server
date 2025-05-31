@@ -15,6 +15,8 @@ export const getUserAllData = async (userId: string) => {
     getUserStyle(userId, connection),
   ]);
 
+  console.log(favPacking);
+
   connection.release();
   const obj = {
     user,

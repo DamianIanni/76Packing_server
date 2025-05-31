@@ -18,9 +18,7 @@ export const favPackingMutationsResolver = {
   },
   updateFavPacking: async (
     _: any,
-    {
-      favPacking,
-    }: { favPacking: { userId: string; packing_type: number; id: number } }
+    { favPacking }: { favPacking: favPackingInterface }
   ) => {
     try {
       const res = await updateFavPacking(favPacking);

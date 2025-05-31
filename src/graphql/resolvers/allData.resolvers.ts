@@ -3,6 +3,7 @@ import { successResponse, errorResponse } from "../../utils/responses";
 
 export const getAllUserDataQueryResolver = {
   getAllUserData: async (_: any, { userId }: { userId: string }) => {
+    console.log("userId", userId);
     try {
       const res = await getUserAllData(userId);
       return successResponse(res);

@@ -31,10 +31,10 @@ export async function promptLuggage(data: PackingPromptInput) {
   );
 
   const messageContent = response.data.choices?.[0]?.message?.content;
-  const a = JSON.parse(messageContent);
-  console.log("PARSEaDO", a);
+  const messageContentParsed = JSON.parse(messageContent);
+  console.log("PARSEaDO", messageContentParsed);
 
-  // console.log("AI RAW MESSAGE:", response.data.error);
+  console.log("AI RAW MESSAGE:", response.data);
   // const output = responseBuilder(messageContent);
   if (!messageContent) {
     const error = {
@@ -45,5 +45,5 @@ export async function promptLuggage(data: PackingPromptInput) {
     throw error;
   }
 
-  return messageContent;
+  return messageContentParsed;
 }

@@ -1,9 +1,8 @@
-type PackingType = 0 | 1 | 2 | 3;
+type PackingType = 0 | 1 | 2;
 
 // 0 is history
 // 1 is fav
-// 2 is both
-// 3 means to be deleted
+// 2 means to be deleted
 
 export interface savedLuggageInterface {
   id?: number;

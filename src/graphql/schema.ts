@@ -5,7 +5,7 @@ export const typeDefs = gql`
   type Response {
     success: Boolean!
     message: String
-    code: String
+    code: Int
     data: JSON
   }
 
@@ -28,6 +28,7 @@ export const typeDefs = gql`
     Luggage_4: String
     userId: String!
     packing_type: Int!
+    id: Int
   }
 
   input User {
@@ -42,16 +43,16 @@ export const typeDefs = gql`
   input PackingPromptInput {
     destination: String!
     duration: Int!
-    activities: [String]
+    activities: String
     luggageItems: [String!]!
     weatherSensitivity: String
     favoriteClothing: [String]
     accommodationType: String
-    utilities: String
+    utilities: [String]
     gender: String
     height: Int
-    nationality: String!
-    age: Int!
+    nationality: String
+    age: Int
     dressStyle: String
   }
 
@@ -67,6 +68,11 @@ export const typeDefs = gql`
     userId: String!
     packing_type: Int!
     id: Int!
+    Luggage_1: String!
+    Luggage_2: String
+    Luggage_3: String
+    Luggage_4: String
+    Name: String
   }
 
   type Query {
