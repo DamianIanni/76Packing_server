@@ -25,7 +25,8 @@ let serviceAccount: ServiceAccount;
 
 try {
   const secretPath = "/run/secrets/FIREBASE_SERVICE_ACCOUNT_KEY";
-
+  console.log("📂 Verificando existencia de:", secretPath);
+  console.log("🧾 Archivos en /run/secrets/:", fs.readdirSync("/run/secrets/"));
   if (fs.existsSync(secretPath)) {
     console.log("✅ Usando secret file de Render");
     const fileContent = fs.readFileSync(secretPath, "utf8");
