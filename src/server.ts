@@ -1,11 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
-import fs from "fs";
-import path from "path";
+// import fs from "fs";
+// import path from "path";
 
 import express from "express";
 import admin from "firebase-admin";
-import { ServiceAccount } from "firebase-admin";
+// import { ServiceAccount } from "firebase-admin";
 // import serviceAccount from "./firebaseServiceAccountKey.json";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
@@ -17,17 +17,30 @@ import { testConnection } from "./services/dbServices/testConnection";
 import { typeDefs } from "./graphql/schema";
 import { resolvers } from "./graphql/resolvers";
 
+import fs from "fs";
+import path from "path";
+import { ServiceAccount } from "firebase-admin";
+
 let serviceAccount: ServiceAccount;
 
-const secretPath = "/run/secrets/FIREBASE_SERVICE_ACCOUNT_FILE";
+try {
+  const secretPath = "/run/secrets/FIREBASE_SERVICE_ACCOUNT_KEY";
 
-if (fs.existsSync(secretPath)) {
-  // Estamos en producción (Render)
-  const fileContent = fs.readFileSync(secretPath, "utf8");
-  serviceAccount = JSON.parse(fileContent);
-} else {
-  // Estamos en local
-  serviceAccount = require("./firebaseServiceAccountKey.json");
+  if (fs.existsSync(secretPath)) {
+    console.log("✅ Usando secret file de Render");
+    const fileContent = fs.readFileSync(secretPath, "utf8");
+    serviceAccount = JSON.parse(fileContent);
+  } else {
+    console.log("🛠️ Usando archivo local firebaseServiceAccountKey.json");
+    const localPath = path.resolve(
+      __dirname,
+      "./firebaseServiceAccountKey.json"
+    );
+    serviceAccount = JSON.parse(fs.readFileSync(localPath, "utf8"));
+  }
+} catch (err) {
+  console.error("❌ Error cargando el archivo de Firebase:", err);
+  process.exit(1);
 }
 
 // console.log("🔑 OR_API_KEY:", process.env.OR_API_KEY);
