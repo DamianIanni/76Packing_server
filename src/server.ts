@@ -6,7 +6,8 @@ import admin from "firebase-admin";
 import { ServiceAccount } from "firebase-admin";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
-import cors from "cors";
+// import cors from "cors";
+const cors = require("cors");
 
 import { testConnection } from "./services/dbServices/testConnection";
 import { typeDefs } from "./graphql/schema";
