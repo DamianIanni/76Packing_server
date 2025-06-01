@@ -7,7 +7,6 @@ export const getUser = async (
   userId: string,
   conn?: PoolConnection
 ): Promise<userInterface | undefined> => {
-  console.log("userId recibido:", userId);
   const sql = `SELECT * FROM Users WHERE userId = ?`;
   const VALUES = [userId];
 

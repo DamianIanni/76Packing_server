@@ -22,8 +22,6 @@ export const checkLimit = async (): Promise<
       };
     }
 
-    // console.log("API KEY USAGE LIMITS", usage, limit, data);
-
     return {
       success: true,
       usage,
