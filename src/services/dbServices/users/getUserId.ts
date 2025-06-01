@@ -2,7 +2,6 @@ import { dbPool } from "../../../config/db";
 import { RowDataPacket } from "mysql2";
 
 export const getUserId = async (email: string): Promise<string | undefined> => {
-  console.log("userId recibido:", email);
   const sql = `SELECT userId FROM Users WHERE Email = ?`;
   const VALUES = [email];
 

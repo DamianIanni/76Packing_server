@@ -32,9 +32,7 @@ export async function promptLuggage(data: PackingPromptInput) {
 
   const messageContent = response.data.choices?.[0]?.message?.content;
   const messageContentParsed = JSON.parse(messageContent);
-  console.log("PARSEaDO", messageContentParsed);
 
-  console.log("AI RAW MESSAGE:", response.data);
   // const output = responseBuilder(messageContent);
   if (!messageContent) {
     const error = {

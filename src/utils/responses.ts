@@ -1,7 +1,6 @@
 const cleanObject = (obj: any) => JSON.parse(JSON.stringify(obj));
 
 export const successResponse = (data: any) => {
-  console.log("RESPONSE RESPONSE", data);
   // const cleaned = cleanObject(data);
 
   return {
@@ -17,7 +16,6 @@ export const errorResponse = (error: any) => {
   console.log("ERRORE", error);
   // const parsedError = JSON.parse(error);
   // const parsedMetadata = JSON.parse(parsedError.metadata.raw);
-  // console.log("ERRORE 33", parsedError);
 
   return {
     success: false,

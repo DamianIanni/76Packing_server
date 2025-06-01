@@ -18,7 +18,6 @@ export const insertSavedLuggage = async (
   const connection = await dbPool.getConnection();
 
   const [res] = await connection.execute<ResultSetHeader>(sql, VALUES);
-  console.log("INSERTED savedLuggage INTO DB", res);
 
   connection.release();
   if (res.affectedRows === 0) {

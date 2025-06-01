@@ -23,7 +23,6 @@ export const responseBuilder = (rawResponse: string) => {
         item: item.item,
       }))
     );
-    // console.log("PARSED LUGGAGES", parsedLuggages);
     return parsedLuggages;
   }
 

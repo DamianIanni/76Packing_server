@@ -7,7 +7,6 @@ export const getSavedLuggage = async (
   userId: string,
   conn?: PoolConnection
 ): Promise<savedLuggageInterface | null> => {
-  console.log("userId recibido:", userId);
   const sql = `SELECT * FROM SavedLuggage WHERE userId = ?`;
   const VALUES = [userId];
 

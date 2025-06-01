@@ -9,7 +9,6 @@ export const getFavPacking = async (
 ): Promise<favPackingInterface[] | null> => {
   const sql = `SELECT * FROM FavPacking WHERE userId = ?`;
   const VALUES = [userId];
-  console.log("EN FAVPACKING", userId);
 
   const connection = conn || (await dbPool.getConnection());
   const [res] = await connection.execute<RowDataPacket[]>(sql, VALUES);
@@ -32,6 +31,5 @@ export const getFavPacking = async (
 
   // if (!res[0]) throw "Error getting fav packing";
   // console.log("RES RES", res);
-  console.log("RES RES", res);
   return res as favPackingInterface[];
 };

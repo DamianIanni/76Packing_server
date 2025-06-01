@@ -10,8 +10,6 @@ export const savedLuggageMutationsResolvers = {
     { savedLuggage }: { savedLuggage: savedLuggageInterface }
   ) => {
     try {
-      console.log("SAVED LUGGAGE", savedLuggage);
-
       const res = await insertSavedLuggage(savedLuggage);
       return successResponse(res);
     } catch (error) {
