@@ -4,24 +4,35 @@ dotenv.config();
 import express from "express";
 import admin from "firebase-admin";
 import { ServiceAccount } from "firebase-admin";
-import serviceAccount from "./firebaseServiceAccountKey.json";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import cors from "cors";
 
 import { testConnection } from "./services/dbServices/testConnection";
-
 import { typeDefs } from "./graphql/schema";
 import { resolvers } from "./graphql/resolvers";
 
 const app = express();
 const PORT = process.env.PORT;
-const castedServiceAccount = serviceAccount as ServiceAccount;
-app.use(cors({ origin: "*" }));
-app.use(express.json());
+
+// 🔐 Carga condicional de credenciales de Firebase
+let serviceAccount: ServiceAccount;
+
+if (process.env.NODE_ENV === "production") {
+  try {
+    serviceAccount = JSON.parse(
+      process.env.FIREBASE_SERVICE_ACCOUNT_KEY as string
+    );
+  } catch (error) {
+    console.error("❌ Error al parsear FIREBASE_SERVICE_ACCOUNT_KEY:", error);
+    process.exit(1);
+  }
+} else {
+  serviceAccount = require("./firebaseServiceAccountKey.json");
+}
 
 admin.initializeApp({
-  credential: admin.credential.cert(castedServiceAccount),
+  credential: admin.credential.cert(serviceAccount),
 });
 
 const server = new ApolloServer({
@@ -29,14 +40,11 @@ const server = new ApolloServer({
   resolvers,
 });
 
+app.use(cors({ origin: "*" }));
+app.use(express.json());
+
 async function startServer() {
   await server.start();
-  // app.use((req, res, next) => {
-  //   console.log(`${req.method} ${req.url}`);
-  //   console.log("Headers:", req.headers);
-  //   console.log("Body:", req.body);
-  //   next();
-  // });
 
   app.use("/graphql", async (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -49,7 +57,6 @@ async function startServer() {
 
     try {
       const decodedToken = await admin.auth().verifyIdToken(idToken);
-      // console.log("✅ Token válido:", decodedToken);
       (req as any).user = decodedToken;
       next();
     } catch (error) {
@@ -57,8 +64,10 @@ async function startServer() {
       return res.status(401).json({ error: "Token inválido" });
     }
   });
+
   await testConnection();
   app.use("/graphql", expressMiddleware(server));
+
   app.listen(PORT, () => {
     console.log(
       `🚀 Servidor GraphQL corriendo en http://localhost:${PORT}/graphql`
