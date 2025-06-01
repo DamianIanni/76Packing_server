@@ -1,6 +1,6 @@
 import { successResponse, errorResponse } from "../../utils/responses";
 import { insertUserStyle } from "../../services/dbServices/userStyle/insertUserStyle";
-import { getUserStyle } from "../../services/dbServices/userStyle/getuserStyle";
+import { getUserStyle } from "../../services/dbServices/userStyle/getUserStyle";
 import { updateUserStyle } from "../../services/dbServices/userStyle/updateUserStyle";
 import { userStyleInterface } from "../../utils/dbUtils/dataInterfaces";
 

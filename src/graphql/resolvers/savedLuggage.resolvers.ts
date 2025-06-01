@@ -1,5 +1,6 @@
 import { successResponse, errorResponse } from "../../utils/responses";
-import { getSavedLuggage } from "../../services/dbServices/savedLuggage/getsavedLuggage";
+// import { getSavedLuggage } from "../../services/dbServices/savedLuggage/getsavedLuggage";
+import { getSavedLuggage } from "../../services/dbServices/savedLuggage/getSavedLuggage";
 import { insertSavedLuggage } from "../../services/dbServices/savedLuggage/insertSavedLuggage";
 import { updateSavedLuggage } from "../../services/dbServices/savedLuggage/updateSavedLuggage";
 import { savedLuggageInterface } from "../../utils/dbUtils/dataInterfaces";
