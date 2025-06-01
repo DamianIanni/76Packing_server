@@ -1,5 +1,13 @@
 import mysql, { PoolOptions } from "mysql2/promise";
 
+console.log(
+  "DB THINGS",
+  process.env.DB_HOST,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  process.env.DB_NAME
+);
+
 const access: PoolOptions = {
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
