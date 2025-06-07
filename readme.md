@@ -6,11 +6,11 @@ This project is the backend server for the Packing 76 application. It is built u
 
 ## Features
 
-- GraphQL API for data access and manipulation.
-- User management (CRUD operations).
-- Management of favorite clothes, packing lists, and saved luggage configurations.
-- Integration with a database (MySQL based on `mysql2` dependency).
-- Potential AI/prompt-based features for luggage recommendations.
+- Exposes a GraphQL API for managing packing-related data.
+- User management: create, read, update, delete users.
+- Manage favorite clothes, packing lists, and saved luggage.
+- AI-powered luggage recommendations via prompt engineering (planned / in progress).
+- Secure integration with MySQL database.
 
 ## Technologies Used
 
@@ -61,7 +61,7 @@ Before running this project, ensure you have the following installed:
     _Note: You will need to add your specific database connection details and the OpenRouter API key._
 
 4.  **Database Setup:**
-    This project uses MySQL. You will need to set up a MySQL database and configure the connection details in your `.env` file. (Further database setup steps like running migrations or schema creation are not detailed here, as they were not found in the initial project exploration).
+    This project uses MySQL. You will need to set up a MySQL database and configure the connection details in your `.env` file.
 
 ## Running the Project
 
@@ -88,4 +88,15 @@ The GraphQL API will be available at `http://localhost:<PORT>/graphql` (replace 
 
 ## Project Structure
 
+<pre>
 . ├── package.json ├── .gitignore ├── tsconfig.json ├── .env.example └── src ├── server.ts # Main server entry point ├── config # Configuration files (e.g., database) ├── utils # Utility functions ├── services # Business logic and external service interactions (DB, prompts) └── graphql # GraphQL schema and resolvers
+</pre>
+
+## Author
+
+Damian Ianni
+
+## Contact
+
+- GitHub: [DamianIanni](https://github.com/DamianIanni)
+- Email: damiangussi@gmail.com
