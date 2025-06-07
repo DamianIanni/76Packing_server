@@ -91,7 +91,19 @@ The GraphQL API will be available at `http://localhost:<PORT>/graphql` (replace 
 ## Project Structure
 
 <pre>
-. ├── package.json ├── .gitignore ├── tsconfig.json ├── .env.example └── src ├── server.ts # Main server entry point ├── config # Configuration files (e.g., database) ├── utils # Utility functions ├── services # Business logic and external service interactions (DB, prompts) └── graphql # GraphQL schema and resolvers
+.
+├── package.json
+├── .gitignore
+├── tsconfig.json
+├── .env.example
+└── src
+    ├── server.ts                 # Main server entry point
+    ├── config                    # Configuration files (e.g., database pool)
+    ├── utils                     # Utility functions (response helpers, interfaces)
+    ├── services                  # Business logic and DB queries
+    └── graphql
+        ├── schema.ts             # GraphQL schema
+        └── resolvers             # GraphQL resolvers
 </pre>
 
 ## Author
