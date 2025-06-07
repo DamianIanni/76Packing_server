@@ -1,4 +1,6 @@
-# 76packing_server
+# 76Packing_server
+
+Backend server for the **76Packing mobile app** — GraphQL API + MySQL + Node.js + TypeScript.
 
 ## Project Description
 
